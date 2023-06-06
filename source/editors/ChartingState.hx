@@ -2191,8 +2191,9 @@ class ChartingState extends MusicBeatState
 		var steps:Int = Math.round(getSectionBeats() * 4);
 		var st:Float = sectionStartTime();
 		var et:Float = st + (Conductor.stepCrochet * steps);
-
-		if (FlxG.save.data.chart_waveformInst) {
+ 
+ 		@:privateAccess {
+ 		if (FlxG.save.data.chart_waveformInst) {
 			var sound:FlxSound = FlxG.sound.music;
 			if (sound._sound != null && sound._sound.__buffer != null) {
 				var bytes:Bytes = sound._sound.__buffer.data.toBytes();
@@ -2225,6 +2226,7 @@ class ChartingState extends MusicBeatState
 				);
 			}
 		}
+	}
 
 		// Draws
 		var gSize:Int = Std.int(GRID_SIZE * 8);
