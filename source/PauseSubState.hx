@@ -234,7 +234,8 @@ class PauseSubState extends MusicBeatSubstate
 				case "Restart Song":
 					restartSong();
 				case "Skip Song":
-					PlayState.instance.endSong();
+					close();
+					PlayState.instance.finishSong(true);
 				case "Leave Charting Mode":
 					restartSong();
 					PlayState.chartingMode = false;
