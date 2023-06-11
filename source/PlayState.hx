@@ -4108,23 +4108,11 @@ class PlayState extends MusicBeatState
 			pixelShitPart2 = '-pixel';
 		}
 
-		var ratingGroup:FlxSpriteGroup = new FlxSpriteGroup();
-		var ratingX:Float = coolText.x - 40;
-		var ratingY:Float = 60;
-
-		if (ratingGroup.countDead() > 0) {
-			rating = ratingGroup.getFirstDead();
-			rating.reset(ratingY, ratingY);
-		} else {
-			rating = new FlxSprite();
-			ratingGroup.add(rating);
-		}
-
 		rating.loadGraphic(Paths.image(pixelShitPart1 + daRating.image + pixelShitPart2));
 		rating.cameras = [camHUD];
 		rating.screenCenter();
-		rating.x = ratingX;
-		rating.y -= ratingY;
+		rating.x = coolText.x - 40;
+		rating.y -= 60;
 		rating.acceleration.y = 550 * playbackRate * playbackRate;
 		rating.velocity.y -= FlxG.random.int(140, 175) * playbackRate;
 		rating.velocity.x -= FlxG.random.int(0, 10) * playbackRate;
@@ -4132,29 +4120,16 @@ class PlayState extends MusicBeatState
 		rating.x += ClientPrefs.comboOffset[0];
 		rating.y -= ClientPrefs.comboOffset[1];
 
-		var comboSprGroup:FlxSpriteGroup = new FlxSpriteGroup();
-		var comboSpr:FlxSprite;
-		var comboSprX:Float = coolText.x;
-		var comboSprY:Float = 60;
-
-		if (comboSprGroup.countDead() > 0) {
-			comboSpr = comboSprGroup.getFirstDead();
-			comboSpr.reset(comboSprX, comboSprY);
-		} else {
-			comboSpr = new FlxSprite();
-			comboSprGroup.add(comboSpr);
-		}
-
-		comboSpr.loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
+		var comboSpr:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'combo' + pixelShitPart2));
 		comboSpr.cameras = [camHUD];
 		comboSpr.screenCenter();
-		comboSpr.x = comboSprX;
+		comboSpr.x = coolText.x;
 		comboSpr.acceleration.y = FlxG.random.int(200, 300) * playbackRate * playbackRate;
 		comboSpr.velocity.y -= FlxG.random.int(140, 160) * playbackRate;
 		comboSpr.visible = (!ClientPrefs.hideHud && showCombo);
 		comboSpr.x += ClientPrefs.comboOffset[0];
 		comboSpr.y -= ClientPrefs.comboOffset[1];
-		comboSpr.y += comboSprY;
+		comboSpr.y += 60;
 		comboSpr.velocity.x += FlxG.random.int(1, 10) * playbackRate;
 
 		insert(members.indexOf(strumLineNotes), rating);
@@ -4211,23 +4186,11 @@ class PlayState extends MusicBeatState
 		}
 		for (i in seperatedScore)
 		{
-			var numScoreGroup:FlxSpriteGroup = new FlxSpriteGroup();
-			var numScore:FlxSprite;
-			var numScoreX:Float = coolText.x + (43 * daLoop) - 90;
-			var numScoreY:Float = 80;
-
-			if (numScoreGroup.countDead() > 0) {
-				numScore = numScoreGroup.getFirstDead();
-				numScore.reset(numScoreX, numScoreY);
-			} else {
-				numScore = new FlxSprite();
-				numScoreGroup.add(numScore);
-			}
-			numScore.loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
+			var numScore:FlxSprite = new FlxSprite().loadGraphic(Paths.image(pixelShitPart1 + 'num' + Std.int(i) + pixelShitPart2));
 			numScore.cameras = [camHUD];
 			numScore.screenCenter();
-			numScore.x = numScoreX + ClientPrefs.data.comboOffset[2];
-			numScore.y += numScoreY - ClientPrefs.data.comboOffset[3];
+			numScore.x = coolText.x + (43 * daLoop) - 90;
+			numScore.y += 80;
 
 			numScore.x += ClientPrefs.comboOffset[2];
 			numScore.y -= ClientPrefs.comboOffset[3];
@@ -4258,8 +4221,7 @@ class PlayState extends MusicBeatState
 			FlxTween.tween(numScore, {alpha: 0}, 0.2 / playbackRate, {
 				onComplete: function(tween:FlxTween)
 				{
-					numScore.kill();
-					numScore.alpha = 1;
+					numScore.destroy();
 				},
 				startDelay: Conductor.crochet * 0.002 / playbackRate
 			});
@@ -4277,11 +4239,33 @@ class PlayState extends MusicBeatState
 		// add(coolText);
 
 		FlxTween.tween(rating, {alpha: 0}, 0.2 / playbackRate, {
+			startDelay: Conductor.crochet * 0.001 / playbackRate
+		});
+
+		FlxTween.tween(comboSpr, {alpha: 0}, 0.2 / playbackRate, {
 			onComplete: function(tween:FlxTween)
 			{
-				rating.kill();
-				rating.alpha = 1;
+				coolText.destroy();
+				comboSpr.destroy();
+
+				rating.destroy();
 			},
+			startDelay: Conductor.crochet * 0.002 / playbackRate
+			});
+
+			daLoop++;
+			if(numScore.x > xThing) xThing = numScore.x;
+		}
+		comboSpr.x = xThing + 50;
+		/*
+			trace(combo);
+			trace(seperatedScore);
+		 */
+
+		coolText.text = Std.string(seperatedScore);
+		// add(coolText);
+
+		FlxTween.tween(rating, {alpha: 0}, 0.2 / playbackRate, {
 			startDelay: Conductor.crochet * 0.001 / playbackRate
 		});
 
