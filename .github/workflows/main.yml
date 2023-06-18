@@ -43,7 +43,11 @@ jobs:
           haxelib install flixel-addons 3.1.1
           haxelib install tjson 1.4.0
           haxelib install hxjsonast 1.1.0
-          haxelib install hxCodec 2.5.1
+          haxelib install refactor
+          haxelib run refactor -v replace source *.hx "/vlc\.(MP4Handler|VideoHandler)/hxcodec.VideoHandler/"
+          haxelib run refactor -v replace source *.hx "/import hxcodec\.VideoHandler;/$0\nimport hxcodec.VideoSprite;/"
+          haxelib run refactor -v replace source *.hx "/MP4Handler/VideoHandler/"
+          haxelib install hxCodec 2.6.1
           haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
           haxelib install hscript 2.5.0
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
@@ -84,7 +88,11 @@ jobs:
           haxelib install flixel-addons 3.1.1
           haxelib install tjson 1.4.0
           haxelib install hxjsonast 1.1.0
-          haxelib install hxCodec 2.5.1
+          haxelib install refactor
+          haxelib run refactor -v replace source *.hx "/vlc\.(MP4Handler|VideoHandler)/hxcodec.VideoHandler/"
+          haxelib run refactor -v replace source *.hx "/import hxcodec\.VideoHandler;/$0\nimport hxcodec.VideoSprite;/"
+          haxelib run refactor -v replace source *.hx "/MP4Handler/VideoHandler/"
+          haxelib install hxCodec 2.6.1
           haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
           haxelib install hscript 2.5.0
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
@@ -126,7 +134,11 @@ jobs:
           haxelib install flixel-addons 3.1.1
           haxelib install tjson 1.4.0
           haxelib install hxjsonast 1.1.0
-          haxelib install hxCodec 2.5.1
+          haxelib install refactor
+          haxelib run refactor -v replace source *.hx "/vlc\.(MP4Handler|VideoHandler)/hxcodec.VideoHandler/"
+          haxelib run refactor -v replace source *.hx "/import hxcodec\.VideoHandler;/$0\nimport hxcodec.VideoSprite;/"
+          haxelib run refactor -v replace source *.hx "/MP4Handler/VideoHandler/"
+          haxelib install hxCodec 2.6.1
           haxelib git linc_luajit https://github.com/superpowers04/linc_luajit
           haxelib install hscript 2.5.0
           haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
