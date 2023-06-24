@@ -97,6 +97,13 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.decimals = 1;
 		option.onChange = onChangeHitsoundVolume;
 
+		var option:Option = new Option('Anti-Mash',
+			'If unchecked, it'll disable the annoying anti-mash,\nwhich makes it useful for noobs to spam some notes.',
+			'antiMash',
+			'bool',
+			true);
+		addOption(option);
+
 		var option:Option = new Option('Rating Offset',
 			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
 			'ratingOffset',

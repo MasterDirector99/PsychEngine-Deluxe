@@ -17,6 +17,7 @@ class ClientPrefs {
 	public static var noteSplashes:Bool = true;
 	public static var lowQuality:Bool = false;
 	public static var alwaysUpdateCamera:Bool = true;
+	public static var antiMash:Bool = true;
 	public static var shaders:Bool = true;
 	public static var framerate:Int = 60;
 	public static var cursing:Bool = true;
@@ -106,6 +107,7 @@ class ClientPrefs {
 		FlxG.save.data.noteSplashes = noteSplashes;
 		FlxG.save.data.lowQuality = lowQuality;
 		FlxG.save.data.alwaysUpdateCamera = alwaysUpdateCamera;
+		FlxG.save.data.antiMash = antiMash;
 		FlxG.save.data.shaders = shaders;
 		FlxG.save.data.framerate = framerate;
 		//FlxG.save.data.cursing = cursing;
@@ -177,6 +179,9 @@ class ClientPrefs {
 		}
 		if(FlxG.save.data.alwaysUpdateCamera != null) {
 			alwaysUpdateCamera = FlxG.save.data.alwaysUpdateCamera;
+		}
+		if(FlxG.save.data.antiMash != null) {
+			antiMash = FlxG.save.data.antiMash;
 		}
 		if(FlxG.save.data.shaders != null) {
 			shaders = FlxG.save.data.shaders;
