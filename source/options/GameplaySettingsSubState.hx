@@ -98,7 +98,7 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.onChange = onChangeHitsoundVolume;
 
 		var option:Option = new Option('Anti-Mash',
-			'If unchecked, it'll disable the annoying anti-mash,\nwhich makes it useful for noobs to spam some notes.',
+			"If unchecked, it deactivates the bothersome anti-mash feature,\nallowing beginners to freely spam certain notes.",
 			'antiMash',
 			'bool',
 			true);
