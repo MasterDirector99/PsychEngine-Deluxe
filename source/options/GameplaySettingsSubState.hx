@@ -70,9 +70,9 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 			true);
 		addOption(option);
 
-		var option:Option = new Option('Always Update Camera',
-			'If checked, camera will always update,\nwhich makes the camera more precise.',
-			'alwaysUpdateCamera',
+		var option:Option = new Option('Anti-Mash',
+			"If unchecked, it deactivates the anti-mash feature,\nallowing beginners to freely spam certain notes.",
+			'antiMash',
 			'bool',
 			true);
 		addOption(option);
@@ -96,13 +96,6 @@ class GameplaySettingsSubState extends BaseOptionsMenu
 		option.changeValue = 0.1;
 		option.decimals = 1;
 		option.onChange = onChangeHitsoundVolume;
-
-		var option:Option = new Option('Anti-Mash',
-			"If unchecked, it deactivates the anti-mash feature,\nallowing beginners to freely spam certain notes.",
-			'antiMash',
-			'bool',
-			true);
-		addOption(option);
 
 		var option:Option = new Option('Rating Offset',
 			'Changes how late/early you have to hit for a "Sick!"\nHigher values mean you have to hit later.',
